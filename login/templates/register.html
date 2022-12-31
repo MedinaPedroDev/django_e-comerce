@@ -1,0 +1,78 @@
+{% extends 'plantilla1.html' %}
+
+{% block titulo %} Registro {% endblock %}
+{% block contenido %} 
+
+{% load static %}
+<main class="w-100 d-flex justify-content-center align-items-center degradado">
+
+    <form class="p-2 m-3 d-flex justify-content-center align-items-center flex-column rounded bg-white bg-opacity-75 w-75"  action="/register/" method="POST" id="Formulario">      <!--Formulario-->
+        {% csrf_token %}
+        <h2>Registro</h2>
+        {% if error %}
+        <div class="w-50 d-flex p-2 justify-content-center align-items-center bg-danger bg-opacity-25 border border-danger rounded">
+            <img class="me-3" src="{% static 'iconos/alerta.svg' %}" alt="alerta">
+            <p class="m-0 text-danger fw-bold">{{ error }}</p>
+        </div>
+        {% endif %}
+        <div class="d-flex flex-column flex-md-row p-1 p-md-2 my-1 my-md-2  w-75" >        
+            <div class="d-flex align-items-center p-2 my-2 w-100" id="Input_Nombre">     <!--Campo del Nombre--> 
+                <label class="me-1 cursor" for="Nombre"><img width="40" src="{% static 'iconos/nombre.svg' %}" alt="nombre"></label>
+                <div class="w-100">
+                    <p class="m-0 identificador">Nombre y Apellido</p>
+                    <input class="form-control w-100 border border-2 border-dark" type="text" name="Nombre" id="Nombre" placeholder="Nombre" required>
+                </div>
+            </div>
+
+            <div class="d-flex align-items-center p-2 my-2 w-100" id="Input_Usuario">      <!--Campo del Usuario-->
+                <label class="me-1 cursor" for="Usuario"><img width="40" src="{% static 'iconos/PerfilLogo.svg' %}" alt="perfil"></label>
+                <div class="w-100">
+                    <p class="m-0 identificador">Usuario</p>
+                    <input class="form-control w-100 border border-2 border-dark" type="text" name="Usuario" id="Usuario" placeholder="Usuario" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex flex-column flex-md-row p-1 p-md-2 my-1 my-md-2 w-75" >        
+            <div class="d-flex align-items-center p-2 my-2 w-100" id="Input_Correo">         <!--Campo del Correo-->
+                <label  class="me-1 cursor" for="Correo"><img width="40" src="{% static 'iconos/arroba.svg' %}" alt="arroba"></label>
+                <div class="w-100">
+                    <p class="m-0 identificador">Correo</p>
+                    <input  class="form-control w-100 border border-2 border-dark" type="email" name="Correo" id="Correo" placeholder="Correo" required>
+                </div>
+            </div>
+
+            <div class="d-flex  align-items-center p-2 my-2 w-100" id="Input_Fecha">         <!--Campo del Fecha-->
+                <label  class="me-1 cursor" for="Fecha"><img width="40" src="{% static 'iconos/calendario.svg' %}" alt="arroba"></label>
+                <div class="w-100">
+                    <p class="m-0 identificador">Fecha de Nacimiento</p>
+                    <input  class="form-control w-100 border border-2 border-dark" type="date" name="Fecha" id="Fecha"  required>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex flex-column flex-md-row p-1 p-md-2 my-1 my-md-2 w-75" >        
+            <div class="d-flex align-items-center p-2 my-2 w-100" id="Input_Contraseña1">         <!--Campo de la Contraseña-->
+                <label  class="me-1 cursor" for="Contraseña1"><img width="40" src="{% static 'iconos/contraseña_2.svg' %}" alt="contraseña"></label>
+                <div class="w-100">
+                    <p class="m-0 identificador">Contraseña</p>
+                    <input  class="form-control w-100 border border-2 border-dark" type="password" name="Contraseña1" id="Contraseña1" placeholder="Contraseña" required>
+                </div>
+            </div>
+
+            <div class="d-flex align-items-center p-2 my-2 w-100" id="Input_Contraseña2">         <!--Campo de la Contraseña-->
+                <label  class="me-1 cursor" for="Contraseña2"><img width="40" src="{% static 'iconos/contraseña_2.svg' %}" alt="contraseña"></label>
+                <div class="w-100">
+                    <p class="m-0 identificador">Repetir Contraseña</p>
+                    <input  class="form-control w-100 border border-2 border-dark" type="password" name="Contraseña2" id="Contraseña2" placeholder="Repetir Contaseña" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center align-items-center w-75" id="Enviar">            <!--Boton Para Enviar Datos-->
+            <button  type="submit"  class="btn btn-dark" id="Boton" > Enviar</button>
+        </div>
+        <p class="mt-2 fs-5">Si ya tienes cuenta. <a class="link_list fw-bold text-dark" href="{% url 'login' %}">Inicia sección</a></p>
+    </form>
+</main>
+{% endblock %}

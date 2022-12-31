@@ -1,0 +1,139 @@
+{% extends 'plantilla1.html' %}
+{% block titulo %} {{categoria}} {% endblock %}
+{% load static %}
+
+{% block contenido %} 
+<main class="degradado pb-3">
+  <div
+    class="container-fluid d-flex align-items-center justify-content-between bg-light bg-gradient border-bottom shadow-sm py-2">
+    <div class="d-flex">
+      <h3 class="fs-2">{{categoria}}</h3>
+      <p class="d-flex align-items-center fs-5 fw-semibold ms-3 mb-0">{{resultados}} Resultados</p>
+    </div>
+    <div class="dropdown">
+      <button class="dropdown-toggle rounded-4 px-2 border border-2 border-dark" type="button" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        Ordenar Por:
+      </button>
+      <ul class="dropdown-menu dropdown-menu">
+        {% if orden > 2 %}
+        <li><a class="dropdown-item active" href="{% url 'categoria' categoria pagina_actual 3 %}">Mas Relevantes</a></li>
+        {% else %}
+        <li><a class="dropdown-item" href="{% url 'categoria' categoria pagina_actual 3 %}">Mas Relevantes</a></li>
+        {%  endif %}
+        {% if orden == 1 %}
+        <li><a class="dropdown-item active" href="{% url 'categoria' categoria pagina_actual 1 %}">Menor Precio</a></li>
+        {% else %}
+        <li><a class="dropdown-item" href="{% url 'categoria' categoria pagina_actual 1 %}">Menor Precio</a></li>
+        {%  endif %}
+        {% if orden == 2 %}
+        <li><a class="dropdown-item active" href="{% url 'categoria' categoria pagina_actual 2 %}">Mayor Precio</a></li>
+        {% else %}
+        <li><a class="dropdown-item" href="{% url 'categoria' categoria pagina_actual 2 %}">Mayor Precio</a></li>
+        {%  endif %}
+      </ul>
+    </div>
+  </div>
+
+  <div class="container-fluid p-0 d-flex">
+
+    <!-- Menu de Categorías -->
+    <div class="container w-25 ">
+      <div class="py-3">
+        <h5>Condición</h5>
+        <p class="fw-semibold">Nuevo</p>
+      </div>
+      <div class="d-flex flex-column py-3">
+        <h5>Precio</h5>
+        <a href="/categoria/precio/{{categoria}}/?min=0&max=25" class="text-decoration-none text-dark fw-semibold link_list">Menos de 25$</a>
+        <a href="/categoria/precio/{{categoria}}/?min=25&max=100" class="text-decoration-none text-dark fw-semibold link_list">25$ a 100$</a>
+        <a href="/categoria/precio/{{categoria}}/?min=100&max=200" class="text-decoration-none text-dark fw-semibold link_list">100$ a 200$</a>
+        <a href="/categoria/precio/{{categoria}}/?min=200&max=1000000" class="text-decoration-none text-dark fw-semibold link_list">Mas de 200$</a>
+        <form
+          class="d-flex flex-column justify-content-center align-items-center flex-md-row justify-content-md-start py-3" action="{% url 'precio' categoria %}" method="GET">
+          <input class="input rounded mx-md-1 my-1 my-md-0" type="number" name="min" placeholder="Min">
+          <input class="input rounded mx-md-1 my-1 my-md-0" type="number" name="max" placeholder="Max">
+          <button class="input btn btn-light btn-outline-dark rounded mx-md-1 my-1 py-0" type="submit">Ir</button>
+        </form>
+      </div>
+      <div class="d-flex flex-column py-3">
+        <h5>Categorías</h5>
+        <div class="mt-2 d-flex flex-column">
+          {% for link in lista %}
+          {% if link == categoria %}
+            {% if link == categoria_principal %}
+            <a href="{% url 'categoria' link %}" class=" link_list_active fw-semibold link_list">Todas</a>
+            {% else %}
+            <a href="{% url 'categoria' link %}" class=" link_list_active fw-semibold link_list">{{link}}</a>
+            {% endif %}
+          {% else %}
+            {% if link == categoria_principal %}
+            <a href="{% url 'categoria' link %}" class=" fs-6 text-dark fw-semibold link_list">Todas</a>
+            {% else %}
+            <a href="{% url 'categoria' link %}" class=" fs-6 text-dark fw-semibold link_list">{{link}}</a>
+            {% endif %}
+          {% endif %}
+          {% endfor %}
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- Productos -->
+    <div class="container d-flex flex-wrap w-75 justify-content-evenly visible" id="pagina-1">
+      {% for object in productos %}
+      {% if object.oferta %}
+      <a href="{% url 'products' object.id %}"
+        class="card mt-3 p-1 text-decoration-none text-black border border-dark border-2 border-opacity-50 ">
+        <img src={{object.img.url}} class="card-img-top" alt="{{object.nombre}}">
+        <div class="card-body">
+          <p class="descripcion card-text text-center fs-6">{{object.nombre}}</p>
+          <div class="d-flex justify-content-evenly">
+            <p class="precio card-text text-center fs-4 fw-bold m-0"><span
+                class="fs-6 fw-light text-decoration-line-through align-top me-1 ">{{object.precio}}$</span>{{object.posibleoferta}}$
+            </p>
+            <p class="oferta card-text text-center fs-4 fw-bold text-danger">-{{object.oferta}}%</p>
+          </div>
+        </div>
+      </a>
+      {% else %}
+      <a href="{% url 'products' object.id %}"
+        class="card mt-3 p-1 text-decoration-none text-black border border-dark border-2 border-opacity-50 ">
+        <img src="{{object.img.url}}" class=" card-img-top" alt="{{object.nombre}}">
+        <div class="card-body">
+          <p class="descripcion card-text text-center fs-6">{{object.nombre}}</p>
+          <p class="precio card-text text-center fs-4 fw-bold">{{object.precio}}$</p>
+        </div>
+      </a>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Paginacion -->
+  <nav class="d-flex justify-content-center pt-5" aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item">
+        <a class="page-link" href="{% url 'categoria' categoria anterior orden %}" id="previous" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+
+      {% for pagina in paginas %}
+      {% if pagina == pagina_actual %}
+      <li class="page-item active"><a class="page-link" id="iconoPagina"
+          href="{% url 'categoria' categoria pagina orden %}">{{pagina}}</a></li>
+      {% else %}
+      <li class="page-item"><a class="page-link" id="iconoPagina"
+          href="{% url 'categoria' categoria pagina orden %}">{{pagina}}</a></li>
+      {%endif%}
+      {% endfor %}
+      <li class="page-item">
+        <a class="page-link" href="{% url 'categoria' categoria siguiente orden %}" id="next" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</main>
+{% endblock %}

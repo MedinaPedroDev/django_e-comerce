@@ -1,0 +1,209 @@
+{% extends 'plantilla1.html' %}
+{% block titulo %} OnlineShop {% endblock %}
+
+{% block contenido %} 
+{% load static %}
+
+
+<main class="degradado">
+  <!-- Carrusel Principal -->
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+        aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+        aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+        aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="1500">
+        <div class="img-carrusel-1 d-block w-100"></div>
+        <div class="carousel-caption d-none d-md-block">
+          <h5 class="h1 logo">Online<span>Shop</span></h5>
+          <p class="fs-2 fw-bold text-white">Bienvenido a tu Tienda de Confianza</p>
+        </div>
+      </div>
+      <div class="carousel-item" data-bs-interval="1500">
+        <div class="img-carrusel-2 d-block w-100"></div>
+        <div class="carousel-caption d-none d-md-block">
+          <h5 class="fs-2 fw-bold text-white">Viste a la moda</h5>
+        </div>
+      </div>
+      <div class="carousel-item" data-bs-interval="1500">
+        <div class="img-carrusel-3 d-block w-100"></div>
+        <div class="carousel-caption d-none d-md-block">
+          <h5 class=" t-carrusel fs-1">Aprovecha</h5>
+          <p class="fs-2 fw-bold text-white">Aprovecha nuestros descuentos en tecnología y mucho mas</p>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <!-- Segundo carrusel -->
+  <div class="container-fluid py-5">
+    <h3>{{ nombre1 }}</h3>
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="container-fluid">
+            <div class="row d-flex flex-wrap flex-lg-nowrap align-items-center justify-content-around ">
+              {% for object in objectCarrusel.0%}
+              {% if object.oferta %}
+              <a href="{% url 'products' object.id %}" class="card mt-3 p-1 text-decoration-none text-black border border-dark border-2 border-opacity-50 ">
+                <img src={{object.img.url}} class="card-img-top" alt="{{object.nombre}}">
+                <div class="card-body">
+                  <p class="descripcion card-text text-center fs-6">{{object.nombre}}</p>
+                  <div class="d-flex justify-content-evenly">
+                    <p class="precio card-text text-center fs-4 fw-bold m-0"><span
+                        class="fs-6 fw-light text-decoration-line-through align-top me-1 ">{{object.precio}}$</span>{{object.posibleoferta}}$
+                    </p>
+                    <p class="oferta card-text text-center fs-4 fw-bold text-danger">-{{object.oferta}}%</p>
+                  </div>
+                </div>
+              </a>
+              {% else %}
+              <a href="{% url 'products' object.id %}" class="card mt-3 p-1 text-decoration-none text-black border border-dark border-2 border-opacity-50 ">
+                <img src="{{object.img.url}}" class=" card-img-top" alt="{{object.nombre}}">
+                <div class="card-body">
+                  <p class="descripcion card-text text-center fs-6">{{object.nombre}}</p>
+                  <p class="precio card-text text-center fs-4 fw-bold">{{object.precio}}$</p>
+                </div>
+              </a>
+              {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="container-fluid">
+            <div class="row d-flex flex-wrap flex-lg-nowrap align-items-center justify-content-around">
+              {% for object in objectCarrusel.1%}
+              {% if object.oferta %}
+              <a href="{% url 'products' object.id %}" class="card mt-3 p-1 text-decoration-none text-black border border-dark border-2 border-opacity-50 ">
+                <img src={{object.img.url}} class=" card-img-top" alt="{{object.nombre}}">
+                <div class="card-body">
+                  <p class="descripcion card-text text-center fs-6">{{object.nombre}}</p>
+                  <div class="d-flex justify-content-evenly">
+                    <p class="precio card-text text-center fs-4 fw-bold m-0"><span
+                        class="fs-6 fw-light text-decoration-line-through align-top me-1 ">{{object.precio}}$</span>{{object.posibleoferta}}$
+                    </p>
+                    <p class="oferta card-text text-center fs-4 fw-bold text-danger">-{{object.oferta}}%</p>
+                  </div>
+                </div>
+              </a>
+              {% else %}
+              <a href="{% url 'products' object.id %}" class="card mt-3 p-1 text-decoration-none text-black border border-dark border-2 border-opacity-50 ">
+                <img src="{{object.img.url}}" class=" card-img-top" alt="{{object.nombre}}">
+                <div class="card-body">
+                  <p class="descripcion card-text text-center fs-6">{{object.nombre}}</p>
+                  <p class="precio card-text text-center fs-4 fw-bold">{{object.precio}}$</p>
+                </div>
+              </a>
+              {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Tercer carrusel -->
+  <div class="container-fluid py-5">
+    <h3>{{ nombre2 }}</h3>
+    <div id="carouselExampleControls-2" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="container-fluid">
+            <div class="row d-flex flex-wrap flex-lg-nowrap align-items-center justify-content-around">
+              {% for object in objectCarrusel.2%}
+              {% if object.oferta %}
+              <a href="{% url 'products' object.id %}" class="card mt-3 p-1 text-decoration-none text-black border border-dark border-2 border-opacity-50 ">
+                <img src={{object.img.url}} class=" card-img-top" alt="{{object.nombre}}">
+                <div class="card-body">
+                  <p class="descripcion card-text text-center fs-6">{{object.nombre}}</p>
+                  <div class="d-flex justify-content-evenly">
+                    <p class="precio card-text text-center fs-4 fw-bold m-0"><span
+                        class="fs-6 fw-light text-decoration-line-through align-top me-1 ">{{object.precio}}$</span>{{object.posibleoferta}}$</p>
+                    <p class="oferta card-text text-center fs-4 fw-bold text-danger">-{{object.oferta}}%</p>
+                  </div>
+                </div>
+              </a>
+              {% else %}
+              <a href="{% url 'products' object.id %}" class="card mt-3 p-1 text-decoration-none  text-black border border-dark border-2 border-opacity-50 ">
+                <img src="{{object.img.url}}" class=" card-img-top" alt="{{object.nombre}}">
+                <div class="card-body">
+                  <p class="descripcion card-text text-center fs-6">{{object.nombre}}</p>
+                  <p class="precio card-text text-center fs-4 fw-bold">{{object.precio}}$</p>
+                </div>
+              </a>
+              {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="container-fluid">
+            <div class="row d-flex flex-wrap flex-lg-nowrap align-items-center justify-content-around">
+              {% for object in objectCarrusel.3%}
+              {% if object.oferta %}
+              <a href="{% url 'products' object.id %}" class="card mt-3 p-1 text-decoration-none text-black border border-dark border-2 border-opacity-50 ">
+                <img src={{object.img.url}} class=" card-img-top" alt="{{object.nombre}}">
+                <div class="card-body">
+                  <p class="descripcion card-text text-center fs-6">{{object.nombre}}</p>
+                  <div class="d-flex justify-content-evenly">
+                    <p class="precio card-text text-center fs-4 fw-bold m-0"><span
+                        class="fs-6 fw-light text-decoration-line-through align-top me-1 ">{{object.precio}}$</span>{{object.posibleoferta}}$</p>
+                    <p class="oferta card-text text-center fs-4 fw-bold text-danger">-{{object.oferta}}%</p>
+                  </div>
+                </div>
+              </a>
+              {% else %}
+              <a href="{% url 'products' object.id %}" class="card mt-3 p-1 text-decoration-none text-black border border-dark border-2 border-opacity-50 ">
+                <img src="{{object.img.url}}" class=" card-img-top" alt="{{object.nombre}}">
+                <div class="card-body">
+                  <p class="descripcion card-text text-center fs-6">{{object.nombre}}</p>
+                  <p class="precio card-text text-center fs-4 fw-bold">{{object.precio}}$</p>
+                </div>
+              </a>
+              {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls-2"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls-2"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+
+</main>
+
+{% endblock %}

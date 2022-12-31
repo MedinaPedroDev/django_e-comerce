@@ -1,0 +1,33 @@
+{% extends 'plantilla1.html' %}
+{% block titulo %} Perfil {% endblock %}
+{% block contenido %} 
+{% load static %}
+<main class="degradado w-100 d-flex flex-column justify-content-center align-items-center p-4">
+    <h1>¡Bienvenido {{usuario.username}}!</h1>
+    <div class="bg-white bg-opacity-75 w-md-75 p-2">
+        <div class="w-100 d-flex align-items-center  p-2">
+            <img style="width:150px; height: 150px;" src="{% static 'iconos/PerfilUser.svg' %}" alt="Perfil">
+            <div class="ms-2">
+                <p class="fs-4 fw-bold m-0">{{perfil.nombre}}</p>
+                <p class="fs-4 fw-bold m-0">{{usuario.email}}</p>
+                <p class="fs-4 fw-bold m-0">{{perfil.fecha_nacimiento}}</p>
+            </div>
+        </div>   
+        <a href="{% url 'cambiardatos' %}"><button type="button" class="btn btn-primary ms-2">Modificar datos</button></a>   
+            
+    </div>
+    <div class="w-100 mt-5">
+        <a href="{% url 'carrito' %}" class="d-block text-decoration-none bg-dark text-white h1 py-2 ps-2">Ultimos Productos en tu carrito <img style="width:50px ;height: 50px;" src="{% static 'iconos/carrito.svg' %}" alt="carrito"></a>
+    </div>
+    <div class="w-100 px-3 bg-white bg-opacity-7">
+        {% for producto in productos_carrito %}
+        <a href="{% url 'products' producto.producto.id %}" class="my-2 d-flex align-items-center justify-content-between border round px-3 text-decoration-none text-black link">
+            <img class="img_lista" src="{{producto.producto.img.url}}" alt="{{producto.producto.nombre}}">
+            <p class="fs-5 fw-bold m-0 ms-5">{{producto.producto.nombre}}</p>
+            <p class="fs-5 fw-bold m-0 ms-5">{{producto.fecha|date:'M d Y'}}</p>
+        </a>
+        {% endfor %}
+    </div>
+
+</main>
+{% endblock %}

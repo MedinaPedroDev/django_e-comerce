@@ -1,0 +1,54 @@
+{% extends 'plantilla1.html' %}
+{% block titulo %} OnlineShop {% endblock %}
+{% load static %}
+
+{% block contenido %} 
+<main class="degradado pb-3">
+    <div
+      class="container-fluid d-flex align-items-center justify-content-between bg-light bg-gradient border-bottom shadow-sm py-2">
+      <div class="d-flex">
+        <h3 class="fs-2">{{buscar}}</h3>
+        <p class="d-flex align-items-center fs-5 fw-semibold ms-3 mb-0">{{cantidad}} Resultados</p>
+      </div>
+      <div class="dropdown">
+        <button class="dropdown-toggle rounded-4 px-2 border border-2 border-dark" type="button"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          Ordenar Por:
+        </button>
+        <ul class="dropdown-menu dropdown-menu">
+          <li><a class="dropdown-item active" href="#">Mas Relevantes</a></li>
+          <li><a class="dropdown-item" href="#">Menor Precio</a></li>
+          <li><a class="dropdown-item" href="#">Mayor Precio</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container d-flex flex-wrap w-75 justify-content-evenly visible">
+        {% for object in productos %}
+        {% if object.oferta %}
+        <a href="{% url 'products' object.id %}"
+            class="card mt-3 p-1 text-decoration-none text-black border border-dark border-2 border-opacity-50 ">
+            <img src={{object.img.url}} class="card-img-top" alt="{{object.nombre}}">
+            <div class="card-body">
+                <p class="descripcion card-text text-center fs-6">{{object.nombre}}</p>
+                <div class="d-flex justify-content-evenly">
+                    <p class="precio card-text text-center fs-4 fw-bold m-0"><span
+                            class="fs-6 fw-light text-decoration-line-through align-top me-1 ">{{object.precio}}$</span>{{object.posibleoferta}}$
+                    </p>
+                    <p class="oferta card-text text-center fs-4 fw-bold text-danger">-{{object.oferta}}%</p>
+                </div>
+            </div>
+        </a>
+        {% else %}
+        <a href="{% url 'products' object.id %}"
+            class="card mt-3 p-1 text-decoration-none text-black border border-dark border-2 border-opacity-50 ">
+            <img src="{{object.img.url}}" class=" card-img-top" alt="{{object.nombre}}">
+            <div class="card-body">
+                <p class="descripcion card-text text-center fs-6">{{object.nombre}}</p>
+                <p class="precio card-text text-center fs-4 fw-bold">{{object.precio}}$</p>
+            </div>
+        </a>
+        {% endif %}
+        {% endfor %}
+    </div>
+</main>
+{% endblock %}

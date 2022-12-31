@@ -1,0 +1,45 @@
+{% extends 'plantilla1.html' %}
+{% block titulo %} OnlineShop {% endblock %}
+{% load static %}
+
+{% block contenido %} 
+<main class="degradado w-100 d-flex flex-column justify-content-center align-items-center p-4 overflow-hidden">
+    <div
+        class="container-fluid d-flex align-items-center justify-content-between bg-light bg-gradient border-bottom shadow-sm py-2">
+        <div class="d-flex">
+            <img style="width:70px ;height: 70px;" src="{% static 'iconos/PerfilUser.svg' %}" alt="Perfil">
+            <p class="d-flex align-items-center fs-5 fw-semibold ms-3 mb-0">{{perfil.nombre}}</p>
+        </div>
+        <p class="d-flex align-items-center fs-5 fw-semibold ms-3 mb-0">{{cantidad}} Resultados</p>
+    </div>
+    <div class="container-fluid p-4 mt-5 bg-white overflow">
+        <div class="caja d-flex mt-3">
+            <p class=" fs-5 columna-1 m-0 border border-dark px-2 border-opacity-25 fw-bold ">Producto</p>
+            <p class=" fs-5 columna-2 m-0 border border-dark text-center border-opacity-25 fw-bold ">Precio</p>
+            <p class=" fs-5 columna-3 m-0 border border-dark text-center border-opacity-25 fw-bold ">Cantidad</p>
+        </div>
+        {% for producto in productos_carrito %}
+        <div class="caja d-flex">
+            <a class="py-4 text-decoration-none text-black  px-2 columna-1 fs-5 m-0 border border-dark border-opacity-25 fw-bold link" href="{% url 'products' producto.producto.id %}">{{producto.producto.nombre}}</a>
+            {% if producto.producto.oferta %}
+            <p class="py-4 columna-2 fs-5 m-0 border text-center border-dark border-opacity-25 fw-bold ">{{producto.producto.posibleoferta}}$</p>
+            {% else %}
+            <p class="py-4 columna-2 fs-5 m-0 border text-center border-dark border-opacity-25 fw-bold ">{{producto.producto.precio}}$</p>
+            {% endif %}
+            <form class="columna-4 d-flex align-items-center px-3 justify-content-between border border-dark border-opacity-25" action="{% url 'editar' producto.producto.id %}" method="POST">
+                {% csrf_token %}
+                <input class="fw-bold text-center" type="number" style="width: 60px; height: 30px;" name="cantidad" id="cantidad" value={{producto.cantidad}}>
+                <input class="d-none" type="text" name="carrito" id="carrito" value="true">
+                <button type="submit" style="width: 70px; height: 40px;" class="cursor text-center btn btn-primary">Editar</button>
+            </form>
+            <form class="columna-5 d-flex align-items-center justify-content-center border border-dark border-opacity-25" action="{% url 'eliminar' producto.producto.id %}" method="POST">
+                {% csrf_token %}
+                <input class="d-none" type="text" name="carrito" id="carrito" value="true">
+                <button type="submit" style="width: 90px; height: 40px;" class="cursor text-center btn btn-danger">Eliminar</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+
+{% endblock %}

@@ -1,0 +1,107 @@
+{% extends 'plantilla1.html' %}
+{% block titulo %} Ofertas {% endblock %}
+{% load static %}
+
+{% block contenido %}
+
+<main class="degradado pb-3">
+    <!-- Barra Identificadora -->
+
+    <div
+      class="container-fluid d-flex align-items-center justify-content-between bg-light bg-gradient border-bottom shadow-sm py-2">
+      <div class="d-flex">
+        <h3 class="fs-2">Ofertas</h3>
+        <p class="d-flex align-items-center fs-5 fw-semibold ms-3 mb-0">{{resultados}} Resultados</p>
+      </div>
+      <div class="dropdown">
+        <button class="dropdown-toggle rounded-4 px-2 border border-2 border-dark" type="button"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          Ordenar Por:
+        </button>
+        <ul class="dropdown-menu dropdown-menu">
+          {% if orden > 2 %}
+          <li><a class="dropdown-item active" href="{% url 'oferta' pagina_actual 3 %}">Mas Relevantes</a></li>
+          {% else %}
+          <li><a class="dropdown-item" href="{% url 'oferta' pagina_actual 3 %}">Mas Relevantes</a></li>
+          {%  endif %}
+          {% if orden == 1 %}
+          <li><a class="dropdown-item active" href="{% url 'oferta' pagina_actual 1 %}">Menor Precio</a></li>
+          {% else %}
+          <li><a class="dropdown-item" href="{% url 'oferta' pagina_actual 1 %}">Menor Precio</a></li>
+          {%  endif %}
+          {% if orden == 2 %}
+          <li><a class="dropdown-item active" href="{% url 'oferta' pagina_actual 2 %}">Mayor Precio</a></li>
+          {% else %}
+          <li><a class="dropdown-item" href="{% url 'oferta' pagina_actual 2 %}">Mayor Precio</a></li>
+          {%  endif %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="container-fluid p-0 d-flex">
+        <!-- Menu de Ofertas -->
+        <div class="container w-25 ">
+            <div class="d-flex flex-column py-3">
+                <h5>Ofertas</h5>
+                <div class="d-flex flex-column">
+                  <a href="{% url 'ofertaPrecio' 5 %}" class=" fs-6 text-dark fw-semibold link_list">Desde 5%</a>
+                  <a href="{% url 'ofertaPrecio' 15 %}" class=" fs-6 text-dark fw-semibold link_list">Desde 15%</a>
+                  <a href="{% url 'ofertaPrecio' 25 %}" class=" fs-6 text-dark fw-semibold link_list">Desde 25%</a>
+                </div>
+            </div>
+        </div>
+        <div class="container d-flex flex-wrap w-75 justify-content-evenly visible">
+            {% for object in productos %}
+            {% if object.oferta %}
+            <a href="{% url 'products' object.id %}" class="card mt-3 p-1 text-decoration-none text-black border border-dark border-2 border-opacity-50 ">
+              <img src={{object.img.url}} class="card-img-top" alt="{{object.nombre}}">
+              <div class="card-body">
+                <p class="descripcion card-text text-center fs-6">{{object.nombre}}</p>
+                <div class="d-flex justify-content-evenly">
+                  <p class="precio card-text text-center fs-4 fw-bold m-0"><span
+                      class="fs-6 fw-light text-decoration-line-through align-top me-1 ">{{object.precio}}$</span>{{object.posibleoferta}}$
+                  </p>
+                  <p class="oferta card-text text-center fs-4 fw-bold text-danger">-{{object.oferta}}%</p>
+                </div>
+              </div>
+            </a>
+            {% else %}
+            <a href="{% url 'products' object.id %}" class="card mt-3 p-1 text-decoration-none text-black border border-dark border-2 border-opacity-50 ">
+              <img src="{{object.img.url}}" class=" card-img-top" alt="{{object.nombre}}">
+              <div class="card-body">
+                <p class="descripcion card-text text-center fs-6">{{object.nombre}}</p>
+                <p class="precio card-text text-center fs-4 fw-bold">{{object.precio}}$</p>
+              </div>
+            </a>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <!-- Paginacion -->
+    <nav class="d-flex justify-content-center pt-5" aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="{% url 'oferta' anterior orden %}" id="previous" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+    
+            {% for pagina in paginas %}
+            {% if pagina == pagina_actual %}
+            <li class="page-item active"><a class="page-link" id="iconoPagina"
+                    href="{% url 'oferta' pagina orden %}">{{pagina}}</a></li>
+            {% else %}
+            <li class="page-item"><a class="page-link" id="iconoPagina"
+                    href="{% url 'oferta' pagina orden %}">{{pagina}}</a></li>
+            {%endif%}
+            {% endfor %}
+            <li class="page-item">
+                <a class="page-link" href="{% url 'oferta' siguiente orden %}" id="next" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</main>
+
+{% endblock %}

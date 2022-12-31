@@ -1,0 +1,106 @@
+{% extends 'plantilla1.html' %}
+{% block titulo %} Acerca De {% endblock %}
+{% load static %}
+
+{% block contenido %}
+<!-- Main -->
+<main class="degradado container-fluid py-4">
+    <div class="container-xl bg-light bg-gradient px-5">
+        <!-- ¿Quienes somos? -->
+        <h2 class="text-center fs-1 fw-bold pt-4">Acerca de Nosotros</h2>
+        <div class="py-4">
+            <h3 class="fs-2 fw-bold">¿Quiénes Somos?</h3>
+            <p class="fs-5">Somos Online<span>Shop</span> una tienda online de productos para el uso personal y para tu
+                hogar, cuyo fin es proporcionarte de manera fácil y económica todo lo que necesites, desde ropa y
+                accesorios
+                hasta los electrodomésticos y decoraciones para tu hogar.</p>
+            <img height="200px" class="w-75 bg-dark border rounded mx-auto d-block" src="{% static 'iconos/logo.png' %}"
+                alt="Logo">
+        </div>
+        <!-- Objetivo -->
+        <div class="py-4">
+            <h3 class="fs-2 fw-bold">¿Objetivo?</h3>
+            <p class="fs-5">Online<span>Shop</span> Busca proporcionarte el mejor servicio posible, que puedas comprar
+                todo
+                lo que necesitas sin la necesidad de salir de tu hogar todo a travez de internet y al alcance de tu
+                mano.</p>
+        </div>
+        <!-- Fundadores -->
+        <div class="py-4">
+            <h3 class="fs-2 fw-bold">Fundadores</h3>
+            <div class="d-flex flex-wrap justify-content-center">
+                <div class=" d-flex flex-column flex-md-row justify-content-evenly align-items-center border border-dark border-2 rounded p-1 my-3 cardPresentacion"
+                    style="width: 90%;">
+                    <div class="card-body text-center text-white">
+                        <h3 class="card-text fs-2 fw-bold">Pedro Medina</h3>
+                        <p class="card-text fs-5 fw-normal">Fundador y creador de Online<span>Shop</span></p>
+                        <p class="card-text fs-5 fw-normal">18 años. Estudiante de Informática del IUJO</p>
+                        <div class=" d-flex align-items-center justify-content-evenly">
+                            <a href=""><img width="50" src="{% static 'iconos/facebook.svg' %}" alt="red-social"></a>
+                            <a href=""><img width="50" src="{% static 'iconos/twiter.svg' %}" alt="red-social"></a>
+                            <a href=""><img width="50" src="{% static 'iconos/instagram.svg' %}" alt="red-social"></a>
+                        </div>
+                    </div>
+                    <img src="{% static 'img/Pedro.jpg' %}" class="img-cardE rounded-circle py-2 py-md-0" alt="...">
+                </div>
+                <div class=" d-flex flex-column flex-md-row justify-content-evenly align-items-center border border-dark border-2 rounded p-1 my-3 cardPresentacion"
+                    style="width: 90%;">
+                    <div class="card-body text-center text-white">
+                        <h3 class="card-text fs-2 fw-bold">Brandon Oropeza</h3>
+                        <p class="card-text fs-5 fw-normal">Fundador y creador de Online<span>Shop</span></p>
+                        <p class="card-text fs-5 fw-normal">23 años. Estudiante de Informática del IUJO</p>
+                        <div class=" d-flex align-items-center justify-content-evenly">
+                            <a href=""><img width="50" src="{% static 'iconos/facebook.svg' %}" alt="red-social"></a>
+                            <a href=""><img width="50" src="{% static 'iconos/twiter.svg' %}" alt="red-social"></a>
+                            <a href=""><img width="50" src="{% static 'iconos/instagram.svg' %}" alt="red-social"></a>
+                        </div>
+                    </div>
+                    <img src="{% static 'img/Brandon.jpg' %}" class="img-card rounded-circle py-2 py-md-0" alt="...">
+                </div>
+                <div class=" d-flex flex-column flex-md-row justify-content-evenly align-items-center border border-dark border-2 rounded p-1 my-3 cardPresentacion"
+                    style="width: 90%;">
+                    <div class="card-body text-center text-white">
+                        <h3 class="card-text fs-2 fw-bold">Emilys Hoyos</h3>
+                        <p class="card-text fs-5 fw-normal">Fundador y creador de Online<span>Shop</span></p>
+                        <p class="card-text fs-5 fw-normal">19 años. Estudiante de Informática del IUJO</p>
+                        <div class=" d-flex align-items-center justify-content-evenly">
+                            <a href=""><img width="50" src="{% static 'iconos/facebook.svg' %}" alt="red-social"></a>
+                            <a href=""><img width="50" src="{% static 'iconos/twiter.svg' %}" alt="red-social"></a>
+                            <a href=""><img width="50" src="{% static 'iconos/instagram.svg' %}" alt="red-social"></a>
+                        </div>
+                    </div>
+                    <img src="{% static 'img/Emilys.jpg' %}" class="img-card rounded-circle py-2 py-md-0" alt="...">
+                </div>
+                <div class=" d-flex flex-column flex-md-row justify-content-evenly align-items-center border border-dark border-2 rounded p-1 my-3 cardPresentacion"
+                    style="width: 90%;">
+                    <div class="card-body text-center text-white">
+                        <h3 class="card-text fs-2 fw-bold">Kevin Miranda</h3>
+                        <p class="card-text fs-5 fw-normal">Fundador y creador de Online<span>Shop</span></p>
+                        <p class="card-text fs-5 fw-normal">18 años. Estudiante de Informática del IUJO</p>
+                        <div class=" d-flex align-items-center justify-content-evenly">
+                            <a href=""><img width="50" src="{% static 'iconos/facebook.svg' %}" alt="red-social"></a>
+                            <a href=""><img width="50" src="{% static 'iconos/twiter.svg' %}" alt="red-social"></a>
+                            <a href=""><img width="50" src="{% static 'iconos/instagram.svg' %}" alt="red-social"></a>
+                        </div>
+                    </div>
+                    <img src="{% static 'img/Kevin.jpg' %}" class="img-card rounded-circle py-2 py-md-0" alt="...">
+                </div>
+                <div class=" d-flex flex-column flex-md-row justify-content-evenly align-items-center border border-dark border-2 rounded p-1 my-3 cardPresentacion"
+                    style="width: 90%;">
+                    <div class="card-body text-center text-white">
+                        <h3 class="card-text fs-2 fw-bold">Raynel Miguel</h3>
+                        <p class="card-text fs-5 fw-normal">Fundador y creador de Online<span>Shop</span></p>
+                        <p class="card-text fs-5 fw-normal">21 años. Estudiante de Informática del IUJO</p>
+                        <div class=" d-flex align-items-center justify-content-evenly">
+                            <a href=""><img width="50" src="{% static 'iconos/facebook.svg' %}" alt="red-social"></a>
+                            <a href=""><img width="50" src="{% static 'iconos/twiter.svg' %}" alt="red-social"></a>
+                            <a href=""><img width="50" src="{% static 'iconos/instagram.svg' %}" alt="red-social"></a>
+                        </div>
+                    </div>
+                    <img src="{% static 'img/Raynel.jpg' %}" class="img-card rounded-circle py-2 py-md-0" alt="...">
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
