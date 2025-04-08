@@ -1,23 +1,34 @@
-Proyecto de python con DJANGO
+<p align="center">
+  <img style="width:90%; height:auto" alt="Night Coding" src="./home.jpg"/> 
+</p>
 
-INTEGRANTES del III semestre de informatica del IUJO:
- Pedro Medina
- Emilys Hoyos
- Kevin Miranda
- Brandon Oropeza
- Raynerl Miguel
+<h1 align="center">Online store project with cart</h1>
 
-
--Los requerimientos para el Proyecto se encuentran el el archivo
-requirements.txt
-
--version de python utlizada  Python 3.7.6
-
--version de pip utilizada  pip 22.3.1
+<p>Practice project to learn how to use the Django framework, BootsTrap and MySql creating an online store.</p>
 
 
--RECOMENDACION:
+## Run Locally
 
---Emplear primero la base de datos de mysql agregada junto al proyecto ya que hay se encuentran varios datos utilizados en la ejecucion del mismo
+- RECOMMENDATION : Have Python 3.10.0 installed or use Conda as packages and environments.
 
---Posiblemente haya inconvenientes devido a que la dependencia de mysqlclient se descargo e instalo manualmente el archivo fue agregado junto con el proecto pero la direccion URL en el archivo requirements.txt puede no ser la misma se aconseja revisarla antes de ejecutar el proyecto para evitar conflictos
+1. Clone the repo to you local device.
+2. Create a virtual environment with Python 3.10.0
+3. Install the required packages by running `pip install -r requirements.txt` in your terminal.
+4. Create the test database in mySQK`djanjoonlineshop.sql`
+4. Run the application with `python manage.py runserver` in your terminal.
+4. Open your browser and navigate to `http://127.0.0.1:8000/` to view th
+
+
+### 🛠 &nbsp; Tools
+- Django ![Django](https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white)
+- BootsTrap ![Bootstrap](https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
+- MySQL ![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)
+
+
+### Preview
+
+<img style="width:90%; height:auto" alt="Night Coding" src="./home.jpg"/> 
+
+<img style="width:90%; height:auto" alt="Night Coding" src="./search.jpg"/> 
+
+<img style="width:90%; height:auto" alt="Night Coding" src="./perfil.jpg"/> 
